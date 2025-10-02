@@ -24,6 +24,7 @@ nucleo-ia/
 │   ├── components/
 │   ├── lib/              # Cliente HTTP
 
+
 │   ├── pages/            # Dashboard y vistas por módulo
 
 │   ├── styles/           # CSS Modules
@@ -60,6 +61,7 @@ nucleo-ia/
    Variables opcionales:
    - `NEXT_PUBLIC_API_URL`: URL base del backend (default `http://localhost:4000/api`).
    - `NEXT_PUBLIC_GOOGLE_AUTH_URL`: endpoint de login (default `http://localhost:4000/api/auth/google`).
+
 
 3. Accede a `http://localhost:3000` y autentícate con tu cuenta corporativa.
 
