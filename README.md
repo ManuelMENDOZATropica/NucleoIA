@@ -23,7 +23,9 @@ nucleo-ia/
 ├── frontend/             # Next.js (React) interfaz principal
 │   ├── components/
 │   ├── lib/              # Cliente HTTP
+
 │   ├── pages/            # Dashboard y vistas por módulo
+
 │   ├── styles/           # CSS Modules
 │   └── package.json
 ├── docs/
@@ -47,6 +49,7 @@ nucleo-ia/
    - `MONGO_URI`: cadena de conexión a MongoDB.
    - `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`: credenciales OAuth (restricción dominio `@tropica.me`).
    - `CLIENT_URL`: URL del frontend autorizada.
+
 
 2. **Frontend**
    ```bash

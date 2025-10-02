@@ -2,7 +2,8 @@ import Link from 'next/link'
 import styles from '@/styles/Layout.module.css'
 
 const navigation = [
-  { label: 'Dashboard', href: '/' },
+  { label: 'Dashboard', href: '/dashboard' },
+
   { label: 'Licencias', href: '/licenses' },
   { label: 'Tutoriales', href: '/tutorials' },
   { label: 'Sesiones UFO', href: '/ufo-sessions' },

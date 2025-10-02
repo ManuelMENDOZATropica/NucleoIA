@@ -2,6 +2,8 @@ import passport from 'passport'
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
 
 const allowedDomain = 'tropica.me'
+const defaultSuperUsers = ['manuel@tropica.me']
+
 
 export function configureGoogleStrategy () {
   const clientID = process.env.GOOGLE_CLIENT_ID
@@ -13,6 +15,12 @@ export function configureGoogleStrategy () {
     return
   }
 
+  const superUsers = (process.env.SUPER_USERS || '')
+    .split(',')
+    .map(email => email.trim().toLowerCase())
+    .filter(Boolean)
+  const mergedSuperUsers = new Set([...defaultSuperUsers, ...superUsers])
+
   passport.use(new GoogleStrategy({
     clientID,
     clientSecret,
@@ -22,13 +30,16 @@ export function configureGoogleStrategy () {
     if (domain !== allowedDomain) {
       return done(null, false, { message: 'Correo no autorizado' })
     }
+    const email = profile.emails?.[0]?.value
+    const isSuperUser = email && mergedSuperUsers.has(email.toLowerCase())
 
     const user = {
       id: profile.id,
-      email: profile.emails?.[0]?.value,
+      email,
       name: profile.displayName,
       avatar: profile.photos?.[0]?.value,
-      role: 'viewer'
+      role: isSuperUser ? 'admin' : 'viewer'
+
     }
 
     return done(null, user)
