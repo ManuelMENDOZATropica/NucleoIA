@@ -23,7 +23,9 @@ nucleo-ia/
 ├── frontend/             # Next.js (React) interfaz principal
 │   ├── components/
 │   ├── lib/              # Cliente HTTP
-│   ├── pages/            # Pantallas de login, dashboard y vistas por módulo
+
+│   ├── pages/            # Dashboard y vistas por módulo
+
 │   ├── styles/           # CSS Modules
 │   └── package.json
 ├── docs/
@@ -47,17 +49,7 @@ nucleo-ia/
    - `MONGO_URI`: cadena de conexión a MongoDB.
    - `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`: credenciales OAuth (restricción dominio `@tropica.me`).
    - `CLIENT_URL`: URL del frontend autorizada.
-   - `SUPER_USERS`: (opcional) correos adicionales con rol admin, separados por coma.
 
-   ### Configurar Google OAuth
-
-   1. Crea un proyecto en [Google Cloud Console](https://console.cloud.google.com/).
-   2. Habilita "OAuth consent screen" en modo interno para el dominio `tropica.me`.
-   3. Genera credenciales **OAuth Client ID** de tipo "Web application" y añade como URIs autorizadas:
-      - `http://localhost:3000` (frontend local)
-      - `http://localhost:4000/api/auth/google/callback` (callback del backend)
-   4. Copia el `Client ID` y `Client secret` en el archivo `.env` del backend.
-   5. (Opcional) Si necesitas más superusuarios agrega sus correos en `SUPER_USERS`.
 
 2. **Frontend**
    ```bash
@@ -69,7 +61,7 @@ nucleo-ia/
    - `NEXT_PUBLIC_API_URL`: URL base del backend (default `http://localhost:4000/api`).
    - `NEXT_PUBLIC_GOOGLE_AUTH_URL`: endpoint de login (default `http://localhost:4000/api/auth/google`).
 
-3. Accede a `http://localhost:3000`, inicia sesión con tu cuenta corporativa y serás redirigido al dashboard.
+3. Accede a `http://localhost:3000` y autentícate con tu cuenta corporativa.
 
 ---
 
@@ -92,7 +84,6 @@ Cada módulo cuenta con endpoints REST (`/api/...`) y vistas dedicadas en el fro
   - `admin`: gestiona usuarios, licencias y recursos.
   - `editor`: crea/actualiza contenidos.
   - `viewer`: acceso de lectura.
-- `manuel@tropica.me` se designa automáticamente como administrador; puedes añadir más correos con privilegios en `SUPER_USERS`.
 - Middleware `ensureAuthenticated` y `authorizeRoles` protegen cada ruta del backend.
 
 > Próximos pasos: persistir usuarios y roles en base de datos para gestión avanzada.
